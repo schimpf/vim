@@ -1,21 +1,29 @@
-"turn vi compatible mode off
+" Turn vi compatible mode off
 set nocompatible
 
-"activate the bundle loader
+" Activate the bundle loader
 call pathogen#infect() 
 
-set lazyredraw		" don't redraw when running macros
-set ttyfast		" fast local tty
+" Don't redraw when running macros
+set lazyredraw								
 
-set clipboard=unnamed	" Uses OS clipboard (shares clipboard accross vim instances)
-set smartcase		" if I put case variation in my search, it's cause I care
-set showmatch		" show matching brackets
+" Fast local tty
+set ttyfast									
 
-set scrolloff=8		" keep at least this many lines above/below cursor
+" Share the clipboard accross vim instances
+set clipboard=unnamed	
+
+" keep at least this many lines above/below cursor
+set scrolloff=8								
+
+" Do not wrap lines
 set nowrap
 
-"colorscheme anotherdark
-colorscheme baycomb
+" Colorscheme anotherdark
+colorscheme asu1dark
+
+" No toolbar
+set guioptions-=T
 
 "show line numbers
 set number
@@ -23,7 +31,6 @@ set number
 "mark column 120
 set cc=120
 
-"imap <Tab> <C-P>
 set mouse=a
 
 "< > keep marked region
@@ -33,6 +40,8 @@ vnoremap > >gv
 " Searching
 set incsearch
 set hlsearch
+set smartcase		" if I put case variation in my search, it's cause I care
+set showmatch		" show matching brackets
 
 " When closing a block, show the matching bracket.
 set showmatch
@@ -41,16 +50,16 @@ set matchpairs+=<:>
 
 " Save files before performing certain actions.
 set autowrite
-" Show current mode in the status line.
-set showmode
-" Show the command in the status line.
-set showcmd
 
-" MY OWN STATUSLINE
+" Status line settings
 set laststatus=2 
 if has("statusline")
 	 set statusline=%<%f\ %h%m%r%=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%k\ %-14.(%l,%c%V%)\ %P
 endif
+" Show current mode in the status line.
+set showmode
+" Show the command in the status line.
+set showcmd
 
 " foldiing
 let g:php_folding = 3
@@ -119,15 +128,7 @@ if has('autocmd')
   au BufRead,BufNewFile *.tt		set filetype=tt2html
 endif
 
-"80menu projects.manta :Project ~/vim/projects/manta<cr>
-"80menu projects.shark :Project ~/vim/projects/shark<cr>
-"80menu projects.redamm :Project ~/vim/projects/redamm<cr>
-"80menu projects.thp :Project ~/vim/projects/thp<cr>
-"80menu projects.thpUI :Project ~/vim/projects/thpui<cr>
-"80menu projects.wf :Project ~/vim/projects/wowfreak<cr>
-
 " autocomplete funcs and identifiers for languages
-
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
