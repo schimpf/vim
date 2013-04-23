@@ -23,8 +23,8 @@
 	path = bundle/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
 [submodule "bundle/vim-less.git"]
-	path = bundle/vim-less.git
+	path = bundle/vim-less
 	url = https://github.com/groenewege/vim-less.git
 [submodule "bundle/vim-rails.git"]
-	path = bundle/vim-rails.git
+	path = bundle/vim-rails
 	url = https://github.com/tpope/vim-rails.git
