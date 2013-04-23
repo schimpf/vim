@@ -1,0 +1,46 @@
+*schimpf.txt*
+
+
+|hotkeys|	Hotkeys
+|files|		Working with files
+|html|		Editing HTML and CSS
+|php|		PHP Programming
+
+==============================================================================
+HOTKEYS								     *hotkeys*
+
+<F1>		Whatever
+<F2> 		Buffexplorer
+<F3>		Switch to last opened buffer
+<F4>
+<F5> 		Open NerdTree
+
+<ctrl>+p	File Browser
+<ctrl-y>,	Expand ZENCODING 
+
+=============================================================================
+FILES								       *files*
+
+NerdTree
+BufExplorer
+ctrlp
+snipmate
+
+==============================================================================
+HTML								        *html*
+
+Zencoding
+
+<ctrl-y>,	expands 
+
+Less
+
+==============================================================================
+PHP								         *php*
+
+checksyntax
+phpcomplete
+
+
+
+" vim: filetype=help foldmethod=marker foldmarker=<<<,>>> modifiable noreadonly

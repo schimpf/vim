@@ -3,25 +3,29 @@ vim
 
 my collection of vim plugins together with my .vimrc
 
-Installed plugins:
-------------------
+# Installed plugins:
 
-General:
-------------------
-bufexplorer      
-ctrlp.vim  
-phpcomplete.vim  
-snipmate.vim  
-vim-fugitive  
-vim-rails
-nerdtree   
-project          
-tagbar        
-vim-less
+## General:
+* bufexplorer      
+* ctrlp  
+* nerdtree   
+* snipmate  
+* tagbar
+* vim-fugitive  
+* project 
+* grep
 
-Php:
-------------------
-checksyntax_vim  
+## HTML & Css:         
+* vim-less
+* zencoding-vim
+* wrap
+* smarty
 
-Rails:
-------------------
+## Php:
+* checksyntax  
+* phpcomplete  
+
+## Rails:
+* vim-rails
+
+## Hotkeys:
