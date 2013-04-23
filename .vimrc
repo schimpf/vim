@@ -124,8 +124,9 @@ if has('autocmd')
     endif
   endif
 
-  au BufRead,BufNewFile *.module		set filetype=php
+  au BufRead,BufNewFile *.module	set filetype=php
   au BufRead,BufNewFile *.tt		set filetype=tt2html
+  au BufRead,BufNewFile *.tpl		set filetype=smarty
 endif
 
 " autocomplete funcs and identifiers for languages
@@ -139,3 +140,5 @@ autocmd FileType c set omnifunc=ccomplete#Complete
 
 set wildmenu
 
+" ctrlp excludes
+set wildignore+=*/templates_c/*,*.log
