@@ -9,12 +9,25 @@
 ==============================================================================
 HOTKEYS								     *hotkeys*
 
-<F1>		Whatever
+This are the basic hotkeys for the bundles comming with this configuration.
+The F1 - F5 hotkeys can be changed in the .vimrc
+
+<F1>		Help
 <F2> 		Buffexplorer
 <F3>		Switch to last opened buffer
 <F4>
-<F5> 		Open NerdTree
 
+<F5> 		Open NerdTree
+<F6>		Toggle the list option (show or hide display whitespace)
+<F7>
+<F8>		Show or hide the Tags bar 
+
+<F9>		Run current script if executable
+<F10>		Run ant
+<F11>
+<F12>
+
+<tab>		Switch between windows if not in edit mode
 <ctrl>+p	File Browser
 <ctrl-y>,	Expand ZENCODING 
 
@@ -22,18 +35,35 @@ HOTKEYS								     *hotkeys*
 FILES								       *files*
 
 NerdTree
+<F5>		Open the file explorer
+cd			change current directory to selected
+b			Show or hide bookamrks
+:Bookmark	Add the selected directory to bookmarks
+I			Show hidden files
+?			Display the help for NerdTree
+
 BufExplorer
+<F2>		Opens the list with all open buffers
+
 ctrlp
+<ctrl>+p	Search for files in current directory
+
 snipmate
+
+grep
+
 
 ==============================================================================
 HTML								        *html*
 
 Zencoding
 
-<ctrl-y>,	expands 
+<ctrl-y>,	expands the zencode before cursor
 
 Less
+
+
+Wrap
 
 ==============================================================================
 PHP								         *php*

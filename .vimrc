@@ -61,7 +61,7 @@ set showmode
 " Show the command in the status line.
 set showcmd
 
-" foldiing
+" folding
 let g:php_folding = 3
 
 " turn syntax highlight alwas on
@@ -76,8 +76,7 @@ syntax enable
 " my Function Keys
 map <F2>      :BufExplorer<CR>
 map <F3>      :b#<CR>
-nnoremap <silent> <F4> :TlistToggle<CR>
-nnoremap <silent> <F5> :NERDTree<CR>Toggle
+nnoremap <silent> <F4> :NERDTree<CR>Toggle
 map <silent> <F6> :set nolist!<CR>:set nolist?<CR>
 nmap <F8> :TagbarToggle<CR>
 
