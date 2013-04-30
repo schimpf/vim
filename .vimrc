@@ -25,10 +25,10 @@ colorscheme asu1dark
 " No toolbar
 set guioptions-=T
 
-"show line numbers
+" Show line numbers
 set number
 
-"mark column 120
+" Mark column 120
 set cc=120
 
 set mouse=a
@@ -37,11 +37,13 @@ set mouse=a
 vnoremap < <gv
 vnoremap > >gv
 
-" Searching
+" Search options
 set incsearch
 set hlsearch
-set smartcase		" if I put case variation in my search, it's cause I care
-set showmatch		" show matching brackets
+" If I put case variation in my search, it's cause I care
+set smartcase		
+" Show matching brackets
+set showmatch		
 
 " When closing a block, show the matching bracket.
 set showmatch
@@ -80,10 +82,12 @@ nnoremap <silent> <F4> :NERDTree<CR>Toggle
 map <silent> <F6> :set nolist!<CR>:set nolist?<CR>
 nmap <F8> :TagbarToggle<CR>
 
+:autocmd FileType php noremap <F12> :w!<CR>:!/usr/bin/php -f %<CR>
+
 " some other shortcuts to make editing in vim more easy
 
 " start of line
-"noremap <C-A>      i<Home>
+noremap <C-A>      i<Home>
 inoremap <C-A>      <Home>
 cnoremap <C-A>      <Home>
 " end of line
@@ -94,37 +98,14 @@ inoremap <C-E>      <End>
 noremap <Tab> <C-W><C-W>
 
 
-
-set ignorecase
-set smartcase
 set tabstop=4
 set shiftwidth=4
 
-
-
 if has('autocmd')
-  " Source .vimrc when I write it.  The nested keyword allows 
-  " autocommand ColorScheme to fire when sourcing ~/.vimrc.
   au! BufWritePost .vimrc nested source %
 
-  " Change color of cursor in terminal:
-  " - red in normal mode.
-  " - orange in insert mode.
-  " Tip found there:
-  "   http://forums.macosxhints.com/archive/index.php/t-49708.html
-  " It works at least with: xterm rxvt eterm
-  " But do nothing with: gnome-terminal terminator konsole xfce4-terminal
-  if version >= 700
-    if &term =~ "xterm\\|rxvt"
-      :silent !echo -ne "\033]12;red\007"
-      let &t_SI = "\033]12;orange\007"
-      let &t_EI = "\033]12;red\007"
-      au VimLeave * :sil !echo -ne "\033]12;red\007"
-    endif
-  endif
-
+  " Some more filetypes which are not recogneized 
   au BufRead,BufNewFile *.module	set filetype=php
-  au BufRead,BufNewFile *.tt		set filetype=tt2html
   au BufRead,BufNewFile *.tpl		set filetype=smarty
 endif
 
@@ -139,5 +120,6 @@ autocmd FileType c set omnifunc=ccomplete#Complete
 
 set wildmenu
 
-" ctrlp excludes
+" ctrlp excludes, add all the files you don't
+" want to be listed when you use the ctrl+p search
 set wildignore+=*/templates_c/*,*.log
