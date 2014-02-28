@@ -1,5 +1,6 @@
 " Turn vi compatible mode off
 set nocompatible
+set expandtab
 
 " Activate the bundle loader
 call pathogen#infect() 
@@ -41,13 +42,12 @@ vnoremap > >gv
 set incsearch
 set hlsearch
 " If I put case variation in my search, it's cause I care
+set ignorecase
 set smartcase		
 " Show matching brackets
 set showmatch		
 
 " When closing a block, show the matching bracket.
-set showmatch
-" Include angle brackets in matching.
 set matchpairs+=<:>
 
 " Save files before performing certain actions.
@@ -82,7 +82,7 @@ nnoremap <silent> <F4> :NERDTree<CR>Toggle
 map <silent> <F6> :set nolist!<CR>:set nolist?<CR>
 nmap <F8> :TagbarToggle<CR>
 
-:autocmd FileType php noremap <F12> :w!<CR>:!/usr/bin/php -f %<CR>
+" :autocmd FileType php noremap <F12> :w!<CR>:!/usr/bin/php -f %<CR>
 
 " some other shortcuts to make editing in vim more easy
 
@@ -123,3 +123,40 @@ set wildmenu
 " ctrlp excludes, add all the files you don't
 " want to be listed when you use the ctrl+p search
 set wildignore+=*/templates_c/*,*.log
+
+
+" MY GIM EXTENSIONS
+
+"Git branch
+function! GitBranch()
+    let branch = system("git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* //'")
+    if branch != ''
+        return '   Git Branch: ' . substitute(branch, '\n', '', 'g')
+    en
+    return ''
+endfunction
+
+function! CurDir()
+    return substitute(getcwd(), '/Users/amir/', "~/", "g")
+endfunction
+
+function! HasPaste()
+    if &paste
+        return 'PASTE MODE  '
+    en
+    return ''
+endfunction
+
+func! DeleteTrailingWS()
+  exe "normal mz"
+  %s/\s\+$//ge
+  exe "normal `z"
+endfunc
+
+autocmd BufWrite *.php :call DeleteTrailingWS()
+autocmd BufWrite *.tpl :call DeleteTrailingWS()
+
+" Format the statusline
+set statusline=%<%f\ %h%m%r%=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%k\ %-14.(%l,%c%V%)\ %P
+set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L%{GitBranch()}
+
