@@ -1,0 +1,10 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/home/gschimpf/.p/emob/evedb/lib/evedb'
+let g:netrw_dirhist_2='/etc/apache2/sites-enabled'
+let g:netrw_dirhist_3='/etc/udev/rules.d'
+let g:netrw_dirhist_4='/home/gschimpf/.oh-my-zsh/plugins/vi-mode'
+let g:netrw_dirhist_5='/home/gschimpf/gitwork/public/dating-mundoligue/private/include/classes/Payments'
+let g:netrw_dirhist_6='/home/gschimpf/gitwork/public/dating-mundoligue/private/scripts'
+let g:netrw_dirhist_7='/etc/pam.d'
+let g:netrw_dirhist_8='/home/gschimpf/gitwork/public/dating-mundoligue/private/include/classes'
