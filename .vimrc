@@ -1,162 +1,69 @@
-" Turn vi compatible mode off
-set nocompatible
-set expandtab
+call plug#begin('~/.vim/plugged')
+  Plug 'preservim/nerdtree'
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
+  Plug 'MattesGroeger/vim-bookmarks'
+  Plug 'kshenoy/vim-signature'
+  Plug 'altercation/vim-colors-solarized'
+  Plug 'JulioJu/neovim-qt-colors-solarized-truecolor-only'
+  Plug 'itchyny/lightline.vim'
+  Plug 'tpope/vim-rails'
+  Plug 'ngmy/vim-rubocop'
+  Plug 'thoughtbot/vim-rspec'
+  Plug 'mhinz/vim-startify'
+  Plug 'tpope/vim-fugitive'
+  Plug 'dense-analysis/ale'
+  Plug 'preservim/vimux'
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
+  Plug 'https://tpope.io/vim/fugitive.git'
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'http://github.com/tpope/vim-surround'
+  Plug 'http://github.com/tpope/vim-repeat'
+  Plug 'thoughtbot/vim-rspec'
+call plug#end()
 
-" Activate the bundle loader
-call pathogen#infect() 
-
-" Don't redraw when running macros
-set lazyredraw								
-
-" Fast local tty
-set ttyfast									
-
-" Share the clipboard accross vim instances
-set clipboard=unnamed	
-
-" keep at least this many lines above/below cursor
-set scrolloff=8								
-
-" Do not wrap lines
-set nowrap
-
-" Colorscheme anotherdark
-colorscheme asu1dark
-
-" No toolbar
-set guioptions-=T
-
-" Show line numbers
+set guioptions+=a
+set termguicolors
+set background=dark
 set number
+set autowriteall
 
-" Mark column 120
-set cc=120
+set expandtab
+set tabstop=2
+set shiftwidth=2
+colorscheme solarized_nvimqt
 
-set mouse=a
-
-"< > keep marked region
-vnoremap < <gv
-vnoremap > >gv
-
-" Search options
-set incsearch
-set hlsearch
-" If I put case variation in my search, it's cause I care
-set ignorecase
-set smartcase		
-" Show matching brackets
-set showmatch		
-
-" When closing a block, show the matching bracket.
-set matchpairs+=<:>
-
-" Save files before performing certain actions.
-set autowrite
-
-" Status line settings
-set laststatus=2 
-if has("statusline")
-	 set statusline=%<%f\ %h%m%r%=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%k\ %-14.(%l,%c%V%)\ %P
-endif
-" Show current mode in the status line.
-set showmode
-" Show the command in the status line.
-set showcmd
-
-" folding
-let g:php_folding = 3
-
-" turn syntax highlight alwas on
-syntax enable
-:if version >= 600
-	syntax enable
-	filetype on
-	filetype plugin on
-	filetype indent on
-:endif
-
-" my Function Keys
-map <F2>      :BufExplorer<CR>
-map <F3>      :b#<CR>
-nnoremap <silent> <F4> :NERDTree<CR>Toggle
-map <silent> <F6> :set nolist!<CR>:set nolist?<CR>
-nmap <F8> :TagbarToggle<CR>
-
-" :autocmd FileType php noremap <F12> :w!<CR>:!/usr/bin/php -f %<CR>
-
-" some other shortcuts to make editing in vim more easy
-
-" start of line
-noremap <C-A>      i<Home>
-inoremap <C-A>      <Home>
-cnoremap <C-A>      <Home>
-" end of line
-noremap <C-E>       i<End>
-inoremap <C-E>      <End>
-
-" Switching between windows by pressing one time the tab key
-noremap <Tab> <C-W><C-W>
+" RSpec.vim mappings
+map <Leader>t :call RunCurrentSpecFile()<CR>
+"map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
+let g:rspec_command = "term bundle exec rspec {spec}"
 
 
-set tabstop=4
-set shiftwidth=4
+" My custom keymapping
+nnoremap <leader>sv :source $MYVIMRC<CR>
+noremap <silent> <C-S>          :update<CR>
+vnoremap <silent> <C-S>         <C-C>:update<CR>
+inoremap <silent> <C-S>         <C-O>:update<CR>
 
-if has('autocmd')
-  au! BufWritePost .vimrc nested source %
+nnoremap <S-Up> :m-2<CR>
+nnoremap <S-Down> :m+<CR>
+inoremap <S-Up> <Esc>:m-2<CR>
+inoremap <S-Down> <Esc>:m+<CR>
 
-  " Some more filetypes which are not recogneized 
-  au BufRead,BufNewFile *.module	set filetype=php
-  au BufRead,BufNewFile *.tpl		set filetype=smarty
-endif
-
-" autocomplete funcs and identifiers for languages
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
-autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-autocmd FileType c set omnifunc=ccomplete#Complete
-
-set wildmenu
-
-" ctrlp excludes, add all the files you don't
-" want to be listed when you use the ctrl+p search
-set wildignore+=*/templates_c/*,*.log
+nnoremap <c-s> :w<CR>
+inoremap <c-s> <Esc>:w<CR>l
+vnoremap <c-s> <Esc>:w<CR>
 
 
-" MY GIM EXTENSIONS
 
-"Git branch
-function! GitBranch()
-    let branch = system("git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* //'")
-    if branch != ''
-        return '   Git Branch: ' . substitute(branch, '\n', '', 'g')
-    en
-    return ''
-endfunction
+" NERDtree
+map <F2> :NERDTreeToggle<CR>
+map <F3> :NERDTreeFind<CR>
 
-function! CurDir()
-    return substitute(getcwd(), '/Users/amir/', "~/", "g")
-endfunction
-
-function! HasPaste()
-    if &paste
-        return 'PASTE MODE  '
-    en
-    return ''
-endfunction
-
-func! DeleteTrailingWS()
-  exe "normal mz"
-  %s/\s\+$//ge
-  exe "normal `z"
-endfunc
-
-autocmd BufWrite *.php :call DeleteTrailingWS()
-autocmd BufWrite *.tpl :call DeleteTrailingWS()
-
-" Format the statusline
-set statusline=%<%f\ %h%m%r%=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%k\ %-14.(%l,%c%V%)\ %P
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L%{GitBranch()}
+" FZF
+map <C-P> :Files<CR>
+map <C-e> :Buffers<CR>
 
